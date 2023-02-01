@@ -4,17 +4,21 @@ import Navbar from "./Navbar";
 import Review from "./Review";
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
+  const token = localStorage.getItem("token");
+
   const fetchData = async () => {
     try {
       const {
         data: { data },
       } = await axios.get("http://localhost:3000/api/v1/review", {
         headers: {
-          authorization: `Bearer ${"token"}`,
+          authorization: `Bearer ${token}`,
         },
       });
       setReviews(data);
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
   useEffect(() => {
     fetchData();

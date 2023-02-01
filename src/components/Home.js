@@ -19,7 +19,9 @@ function Home() {
           <button className="btn-main" onClick={() => navigate("/reviews")}>
             all reviews
           </button>
-          <button className="btn-main">add review</button>
+          <button className="btn-main" onClick={() => navigate("/form")}>
+            add review
+          </button>
         </div>
         <div className="action-photo">
           <img
