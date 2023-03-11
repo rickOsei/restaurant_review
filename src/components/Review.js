@@ -9,11 +9,6 @@ const Review = ({ singleReview }) => {
       <div className="title">
         <h2>{Restaurant}</h2>
       </div>
-      {/* <div className="details">
-        <h4 className="rating">{mpaa_rating || "Unrated"}</h4>
-        <h4 className="genre">{critics_pick}</h4>
-        <h4 className="direct">{publication_date}</h4>
-      </div> */}
       <p className="info">{Review}</p>
       <h4 className="byline">{Category}</h4>
       <ReactStars

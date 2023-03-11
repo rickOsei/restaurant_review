@@ -14,9 +14,9 @@ function App() {
         <Route
           path="/reviews"
           element={
-            <ProtectedRoute>
-              <Reviews />
-            </ProtectedRoute>
+            // <ProtectedRoute>
+            <Reviews />
+            /* </ProtectedRoute> */
           }
         />
         <Route path="/login" element={<Login />} />

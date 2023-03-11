@@ -5,6 +5,7 @@ import Review from "./Review";
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   const token = localStorage.getItem("token");
+  const accessToken = localStorage.getItem("accessToken");
 
   const fetchData = async () => {
     try {
@@ -23,6 +24,23 @@ const Reviews = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  if (reviews.length === 0) {
+    return (
+      <div className="loading_container">
+        <div className="lds-roller">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+    );
+  }
   return (
     <>
       <Navbar />
