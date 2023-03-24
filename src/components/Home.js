@@ -39,7 +39,7 @@ function Home() {
         </div>
         <div className="action-photo">
           <img
-            src={vector}
+            src="https://i.ibb.co/Ycxj2Z1/image-food.png"
             alt=""
             // style={{ width: "1500px", height: "100%" }}
             className="food_image"
