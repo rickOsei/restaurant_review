@@ -3,6 +3,7 @@ import axios from "axios";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import Modal from "./Modal";
 import Navbar from "./Navbar";
+import { toast } from "react-toastify";
 
 export const CreateReview = () => {
   const [reviews, setReviews] = useState([]);
@@ -46,8 +47,10 @@ export const CreateReview = () => {
 
       setReviewState(data);
       fetchData();
+      toast.success("Review created successfully");
     } catch (error) {
       console.log(error);
+      toast.warning(`${error.response.data.msg}`);
     }
   };
 
