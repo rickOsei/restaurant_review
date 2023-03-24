@@ -50,7 +50,7 @@ export const CreateReview = () => {
       toast.success("Review created successfully");
     } catch (error) {
       console.log(error);
-      toast.warning(`${error.response.data.msg}`);
+      toast.error(`${error.response.data.msg}`);
     }
   };
 
