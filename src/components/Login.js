@@ -13,7 +13,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { data } = await axios.post(
-      "http://localhost:3000/api/v1/auth/login",
+      "https://restaurant-review-oct1.onrender.com/api/v1/auth/login",
       {
         email,
         password,
@@ -28,7 +28,9 @@ const Login = () => {
 
   const handleGoogleSubmit = (e) => {
     e.preventDefault();
-    window.open("http://localhost:3000/api/v1/auth/google");
+    window.open(
+      "https://restaurant-review-oct1.onrender.com/api/v1/auth/google"
+    );
   };
 
   return (

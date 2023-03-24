@@ -14,7 +14,6 @@ function Home() {
     console.log(query);
     if (query.token) {
       window.localStorage.setItem("token", query.token);
-      // history.pushState("/");
     }
   });
 
@@ -43,6 +42,7 @@ function Home() {
             alt=""
             // style={{ width: "1500px", height: "100%" }}
             className="food_image"
+            loading="lazy"
           />
         </div>
       </div>{" "}
