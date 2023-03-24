@@ -4,9 +4,8 @@ import { Navigate } from "react-router-dom";
 function ProtectedRoute({ children, users }) {
   const token = localStorage.getItem("token");
 
-
   if (!token) {
-    return <Navigate to="/login" replace="true" />;
+    return <Navigate to="/register" replace="true" />;
   }
 
   return children;

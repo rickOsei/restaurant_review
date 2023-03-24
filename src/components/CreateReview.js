@@ -3,9 +3,17 @@ import axios from "axios";
 import { FaTrash, FaEdit } from "react-icons/fa";
 import Modal from "./Modal";
 import Navbar from "./Navbar";
+import { toast } from "react-toastify";
 
 export const CreateReview = () => {
-  const [reviewState, setReviewState] = useState({});
+  const [reviews, setReviews] = useState([]);
+  const [reviewState, setReviewState] = useState({
+    // _id: "63dba2fbf1c467cdce8e945a",
+    // Restaurant: "Example restaurant",
+    // Category: "cafe",
+    // Review: "Great Restaurant",
+    // Star: "5",
+  });
   const [Restaurant, setRestaurant] = useState("");
   const [Category, setCategory] = useState("");
   const [Review, setReview] = useState("");
@@ -13,9 +21,7 @@ export const CreateReview = () => {
   const [Star, setStar] = useState("");
   const [showModal, setShowModal] = useState(false);
 
-  console.log(Star);
   const token = localStorage.getItem("token");
-
   const createReview = async (e) => {
     e.preventDefault();
     try {
@@ -37,20 +43,42 @@ export const CreateReview = () => {
       setCategory("");
       setReview("");
       setAuthor("");
-      setStar("");
+      setStar(null);
 
       setReviewState(data);
-      console.log(data);
+      fetchData();
+      toast.success("Review created successfully");
+    } catch (error) {
+      console.log(error);
+      toast.error(`${error.response.data.msg}`);
+    }
+  };
+
+  const fetchData = async () => {
+    try {
+      const {
+        data: { data },
+      } = await axios.get("http://localhost:3000/api/v1/review", {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      });
+      setReviews(data);
     } catch (error) {
       console.log(error);
     }
   };
+  useEffect(() => {
+    fetchData();
+  }, [reviewState]);
+
   const deleteReview = async () => {
     try {
       await axios.delete(
         `http://localhost:3000/api/v1/review/${reviewState._id}`,
         { headers: { authorization: `Bearer ${token}` } }
       );
+      fetchData();
     } catch (error) {
       console.log(error);
     }
@@ -169,6 +197,7 @@ export const CreateReview = () => {
               value={Category}
               onChange={(e) => setCategory(e.target.value)}
             >
+              <option value="cafe">Category</option>
               <option value="cafe">Cafe</option>
               <option value="fast food">Fast food</option>
               <option value="casual restaurant">Casual Restaurant</option>
@@ -183,42 +212,55 @@ export const CreateReview = () => {
         </div>
         <section className="output_container">
           <div className="output">
-            <div className="book">
-              <p className="name">
-                <span>Restaurant :</span> {reviewState.Restaurant}
-              </p>
-              <p className="number">
-                <span>Category : </span>
-                {reviewState.Category}
-              </p>
-              <p className="address">
-                <span>Review :</span> {reviewState.Review}
-              </p>
-              <p className="address">
-                <span>Author :</span> {reviewState.Author}
-              </p>
-              <p className="address">
-                <span>Star :</span> {reviewState.Star}
-              </p>
-              <div className="book_icons">
-                <button type="button" className="delete-btn">
-                  <FaTrash className="icons" onClick={deleteReview} />
-                </button>
-                <button type="button" className="edit-btn">
-                  <FaEdit
-                    className="icons"
-                    onClick={() =>
-                      setShowModal(showModal === false ? true : false)
-                    }
-                  />
-                </button>
-              </div>
-            </div>
+            {reviews
+              .filter((review) => review._id === reviewState._id)
+              .map((filteredReview, key) => {
+                const { Restaurant, Review, Category, Author, Star } =
+                  filteredReview;
+                return (
+                  <div className="book" key={key}>
+                    <p className="name">
+                      <span>Restaurant :</span> {Restaurant}
+                    </p>
+                    <p className="number">
+                      <span>Category : </span>
+                      {Category}
+                    </p>
+                    <p className="address">
+                      <span>Review :</span> {Review}
+                    </p>
+                    <p className="address">
+                      <span>Author :</span> {Author}
+                    </p>
+                    <p className="address">
+                      <span>Star :</span> {Star}
+                    </p>
+                    <div className="book_icons">
+                      <button type="button" className="delete-btn">
+                        <FaTrash className="icons" onClick={deleteReview} />
+                      </button>
+                      <button type="button" className="edit-btn">
+                        <FaEdit
+                          className="icons"
+                          onClick={() =>
+                            setShowModal(showModal === false ? true : false)
+                          }
+                        />
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
             <section
               className="modal"
               style={{ display: showModal ? "block" : "none" }}
             >
-              <Modal setShowModal={setShowModal} />
+              <Modal
+                setShowModal={setShowModal}
+                reviewState={reviewState}
+                setReviewState={setReviewState}
+                fetchData={fetchData}
+              />
             </section>
           </div>
         </section>
