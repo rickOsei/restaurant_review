@@ -3,7 +3,6 @@ import ReactStars from "react-rating-stars-component";
 
 const Review = ({ singleReview }) => {
   const { Restaurant, Category, Review, Author, Star } = singleReview;
-  // console.log(singleReview);
   return (
     <div className="movie">
       <div className="title">
