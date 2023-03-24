@@ -28,7 +28,7 @@ export const CreateReview = () => {
       const {
         data: { data },
       } = await axios.post(
-        "http://localhost:3000/api/v1/review",
+        "https://restaurant-review-oct1.onrender.com/api/v1/review",
         {
           Restaurant,
           Category,
@@ -58,11 +58,14 @@ export const CreateReview = () => {
     try {
       const {
         data: { data },
-      } = await axios.get("http://localhost:3000/api/v1/review", {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      });
+      } = await axios.get(
+        "https://restaurant-review-oct1.onrender.com/api/v1/review",
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
+      );
       setReviews(data);
     } catch (error) {
       console.log(error);
@@ -75,7 +78,7 @@ export const CreateReview = () => {
   const deleteReview = async () => {
     try {
       await axios.delete(
-        `http://localhost:3000/api/v1/review/${reviewState._id}`,
+        `https://restaurant-review-oct1.onrender.com/api/v1/review/${reviewState._id}`,
         { headers: { authorization: `Bearer ${token}` } }
       );
       fetchData();

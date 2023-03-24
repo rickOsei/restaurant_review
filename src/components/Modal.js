@@ -14,7 +14,7 @@ const Modal = ({ reviewState, setShowModal, setReviewState, fetchData }) => {
       const {
         data: { data },
       } = await axios.patch(
-        `http://localhost:3000/api/v1/review/${reviewState._id}`,
+        `https://restaurant-review-oct1.onrender.com/api/v1/review/${reviewState._id}`,
         {
           Restaurant,
           Category,

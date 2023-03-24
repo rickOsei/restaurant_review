@@ -13,7 +13,7 @@ const Register = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "http://localhost:3000/api/v1/auth/register",
+        "https://restaurant-review-oct1.onrender.com/api/v1/auth/register",
         {
           name,
           email,

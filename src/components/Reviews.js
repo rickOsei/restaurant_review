@@ -11,11 +11,14 @@ const Reviews = () => {
     try {
       const {
         data: { data },
-      } = await axios.get("http://localhost:3000/api/v1/review", {
-        headers: {
-          authorization: `Bearer ${token}`,
-        },
-      });
+      } = await axios.get(
+        "https://restaurant-review-oct1.onrender.com/api/v1/review",
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
+      );
       setReviews(data);
     } catch (error) {
       console.log(error);
