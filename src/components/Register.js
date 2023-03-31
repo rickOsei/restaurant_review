@@ -20,7 +20,7 @@ const Register = () => {
           password,
         }
       );
-      console.log(data);
+
       localStorage.setItem("token", data.token);
       setEmail("");
       setName("");

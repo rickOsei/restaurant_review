@@ -19,7 +19,7 @@ const Login = () => {
         password,
       }
     );
-    // console.log(data);
+
     setEmail("");
     setPassword("");
     navigate("/form");

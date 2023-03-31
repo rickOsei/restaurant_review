@@ -11,7 +11,7 @@ function Home() {
 
   useEffect(() => {
     const query = queryString.parse(location.search);
-    console.log(query);
+    // console.log(query);
     if (query.token) {
       window.localStorage.setItem("token", query.token);
     }
