@@ -4,6 +4,7 @@ import { FaTrash, FaEdit } from "react-icons/fa";
 import Modal from "./Modal";
 import Navbar from "./Navbar";
 import { toast } from "react-toastify";
+import ReactStars from "react-rating-stars-component";
 
 export const CreateReview = () => {
   const [reviews, setReviews] = useState([]);
@@ -236,7 +237,16 @@ export const CreateReview = () => {
                       <span>Author :</span> {Author}
                     </p>
                     <p className="address">
-                      <span>Star :</span> {Star}
+                      {
+                        <ReactStars
+                          count={5}
+                          // onChange={ratingChanged}
+                          edit={false}
+                          value={Star}
+                          size={24}
+                          activeColor="#ffd700"
+                        />
+                      }
                     </p>
                     <div className="book_icons">
                       <button type="button" className="delete-btn">
