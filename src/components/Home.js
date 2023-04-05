@@ -46,7 +46,7 @@ function Home() {
           />
         </div>
       </div>{" "}
-      <iframe
+      {/* <iframe
         src="https://cedirates-widget.vercel.app/"
         style={{
           border: "none",
@@ -58,7 +58,7 @@ function Home() {
         allowFullScreen=""
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
-      ></iframe>
+      ></iframe> */}
       <div className="overlay"></div>
     </>
   );
